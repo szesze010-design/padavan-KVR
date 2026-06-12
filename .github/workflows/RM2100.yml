@@ -1,5 +1,5 @@
 
-name: MI-RM2100
+name: K
 
 on: 
   workflow_dispatch:
@@ -45,7 +45,7 @@ jobs:
         sed -i 's/mtd_part_size=65536/mtd_part_size=27262976/g' /opt/rt-n56u/trunk/user/scripts/mtd_storage.sh
     - name: Build Firmware
       env:
-        TNAME: RM2100
+        TNAME: K
         KERNEL: 3.4
       run: |
         cd /opt/rt-n56u/trunk
@@ -141,7 +141,6 @@ jobs:
         sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPC/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPS/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_TUNSAFE/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_WIREGUARD/d' .config   
         sed -i '/CONFIG_FIRMWARE_INCLUDE_ZEROTIER/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_ALIDDNS/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS/d' .config
@@ -313,42 +312,6 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL=n" >> .config
 
         
-
-        ##下载工具 curl 必备
-        echo "CONFIG_FIRMWARE_INCLUDE_CURL=y" >> .config
-
-        ##校园网 已删除 /trunk/user/httpd/common.h
-        echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config
-        
-        ## OpenVPN。需要 IPv6 支持。openssl 约 1.2MB，openvpn 约 0.4MB
-        echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=y" >> .config
-
-        ## 广东工业校园认证
-        echo "CONFIG_FIRMWARE_INCLUDE_GDUT_DRCOM=n" >> .config
-
-         ## 哆点校园认证
-        echo "CONFIG_FIRMWARE_INCLUDE_DOGCOM=n" >> .config
-
-         ## 锐捷认证
-        echo "CONFIG_FIRMWARE_INCLUDE_MINIEAP=n" >> .config
-
-         ## 南京校园？
-        echo "CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT=n" >> .config
-
-         ## IPV6中继
-        echo "CONFIG_FIRMWARE_INCLUDE_NAPT66=y" >> .config
-
-         ## ss服务器
-        echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=n" >> .config
-
-         ## SOFTETHERVPN服务器
-        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_SERVER=n" >> .config
-
-         ## SOFTETHERVPN客户端
-        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CLIENT=n" >> .config
- 
-         ## SOFTETHERVPN
-        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CMD=n" >> .config
 
          ## DNS转发 已删除 请查看/trunk/user/httpd/common.h
         echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> .config
