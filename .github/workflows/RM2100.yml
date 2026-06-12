@@ -1,5 +1,5 @@
 
-name: K
+name: Lucky
 
 on: 
   workflow_dispatch:
